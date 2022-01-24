@@ -1,0 +1,54 @@
+version: '3'
+services:
+  reverse-proxy: 
+    image: traefik:v2.4
+    command: --api.insecure=true --providers.docker
+    ports:
+      - 80:80
+      - 443:443
+      - 8080:8080 #Management UI
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./traefik.yml:/etc/traefik/traefik.yml
+      - ./mycert.crt:/etc/traefik/certs/mycert.crt
+      - ./mycert.key:/etc/traefik/certs/mycert.key
+      - ./traefik_dynamic.yml:/etc/traefik/traefik_dynamic.yml
+#Webserver on port 8000
+  webserver1:
+    image: nobody1997/nginx-tutorial:1.0.0  
+    labels: 
+      - "traefik.enable=true"
+      - "traefik.http.routers.webserver1.rule=Host(`webserver1.localhost`)"
+      - "traefik.http.services.webserver1.loadbalancer.server.port=8000"
+      - "traefik.http.routers.webserver1.entrypoints=websecure"
+      - "traefik.http.routers.webserver1.tls=true"
+
+#Webserver on port 8001
+  webserver2:
+    image: nobody1997/nginx-tutorial:1.0.0
+    labels: 
+      - "traefik.enable=true"
+      - "traefik.http.routers.webserver2.rule=Host(`webserver2.localhost`)"
+      - "traefik.http.services.webserver2.loadbalancer.server.port=8001"
+      - "traefik.http.routers.webserver2.entrypoints=websecure"
+      - "traefik.http.routers.webserver2.tls=true"
+
+#Webserver on port 8002
+  webserver3:
+    image: nobody1997/nginx-tutorial:1.0.0
+    labels: 
+      - "traefik.enable=true"
+      - "traefik.http.routers.webserver3.rule=Host(`webserver3.localhost`)"
+      - "traefik.http.services.webserver3.loadbalancer.server.port=8002"
+      - "traefik.http.routers.webserver3.entrypoints=websecure"
+      - "traefik.http.routers.webserver3.tls=true"
+
+#Webserver on port 8003 which has a path called /path
+  webserver4:
+    image: nobody1997/nginx-tutorial:1.0.0
+    labels: 
+      - "traefik.enable=true"
+      - "traefik.http.routers.webserver4.rule=Host(`webserver4.localhost`)"
+      - "traefik.http.services.webserver4.loadbalancer.server.port=8003"
+      - "traefik.http.routers.webserver4.entrypoints=websecure"
+      - "traefik.http.routers.webserver4.tls=true"

@@ -7,6 +7,9 @@ providers:
     watch: true
     exposedByDefault: false
     swarmMode: false
+  file:
+    filename: /etc/traefik/traefik_dynamic.yml
+
 #Logging
 log:
   level: INFO
@@ -15,3 +18,8 @@ log:
 entryPoints:
   web:
     address: ":80"
+  websecure:
+    address: ":443"
+
+
+

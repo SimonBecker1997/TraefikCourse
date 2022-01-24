@@ -1,0 +1,51 @@
+version: '3'
+services:
+  reverse-proxy: 
+    image: traefik:v2.4
+    command: --api.insecure=true --providers.docker
+    ports:
+      - 80:80
+      - 443:443
+      - 8080:8080 #Management UI
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./traefik.yml:/etc/traefik/traefik.yml
+#Webserver on port 8000 | Remove a path from the URL
+  webserver1:
+    image: nobody1997/nginx-tutorial:1.0.0
+    labels: 
+      - "traefik.enable=true"
+      - "traefik.http.routers.webserver1.rule=Host(`webserver1.localhost`)"
+      - "traefik.http.services.webserver1.loadbalancer.server.port=8000"
+      - "traefik.http.routers.webserver1.middlewares=test-stripprefix"
+      - "traefik.http.middlewares.test-stripprefix.stripprefix.prefixes=/foobar,/fiibar"
+
+#Webserver on port 8001 | Compress the traffic (makes loading a website faster)
+  webserver2:
+    image: nobody1997/nginx-tutorial:1.0.0
+    labels: 
+      - "traefik.enable=true"
+      - "traefik.http.routers.webserver2.rule=Host(`webserver2.localhost`)"
+      - "traefik.http.services.webserver2.loadbalancer.server.port=8001"
+      - "traefik.http.routers.webserver2.middlewares=test-compress"
+      - "traefik.http.middlewares.test-compress.compress=true"
+
+#Webserver on port 8002 | Basic Auth
+  webserver3:
+    image: nobody1997/nginx-tutorial:1.0.0
+    labels: 
+      - "traefik.enable=true"
+      - "traefik.http.routers.webserver3.rule=Host(`webserver3.localhost`)"
+      - "traefik.http.services.webserver3.loadbalancer.server.port=8002"
+      - "traefik.http.routers.webserver3.middlewares=test-auth" 
+      - "traefik.http.middlewares.test-auth.basicauth.users=test:{SHA}W6ph5Mm5Pz8GgiULbPgzG37mj9g=" # PW is password, use https://hostingcanada.org/htpasswd-generator/ to generate one
+
+#Webserver on port 8003 which has a path called /path | Adding a path to URL
+  webserver4:
+    image: nobody1997/nginx-tutorial:1.0.0
+    labels: 
+      - "traefik.enable=true"
+      - "traefik.http.routers.webserver4.rule=Host(`webserver4.localhost`)"
+      - "traefik.http.services.webserver4.loadbalancer.server.port=8003"
+      - "traefik.http.routers.webserver4.middlewares=add-path"
+      - "traefik.http.middlewares.add-path.addprefix.prefix=/path"    
