@@ -1,0 +1,28 @@
+api:
+  dashboard: true
+  insecure: true
+#Enable Docker Provider
+providers:
+  docker:
+    watch: true
+    exposedByDefault: false
+    swarmMode: false
+#Logging
+log:
+  level: INFO
+  format: json
+
+accessLog:
+  format: json
+
+#Entrypoints
+entryPoints:
+  web:
+    address: ":80"
+
+# Tracing
+tracing:
+  serviceName: traefik
+  elastic:
+    serverURL: "http://host.docker.internal:8201" # If you are running a dedicaded monitoring server, use the servers URL, like https://monitoring.mycompany.com:8200
+    serviceEnvironment: "prod"
