@@ -4,7 +4,7 @@ Thats what this lab is all about.
 
 To run this lab:
 1. Navigate in your command prompt to this directory.
-2. Run docker-compose up
+2. Run `docker-compose up`
 
 
 This lab shows you:
