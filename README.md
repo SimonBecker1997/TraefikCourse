@@ -2,7 +2,10 @@
 ## Welcome to this course
 This repository is part of a udemy course called Routing with Traefik: Learn Traefik in less than 5 hours
 You can find the videos here: placeholder
-In the subfolders you will find all the chapters that have been shown in the videos
+
+I strongly recommend to watch the course BEFORE you play around with the provided files in this repository.
+In the subfolders you will find all the chapters that have been shown in the videos.
+
 
 ## Chapters
 Klick on the headings to directly be forwarded to each topic
@@ -19,3 +22,16 @@ All about changing and tweaking your incoming requests. Add authentication, chan
 All easy explained and fast to do.
 ### [05_Monitoring and Logging](https://github.com/SimonBecker1997/TraefikCourse/tree/main/05_Monitoring%20and%20Logging)
 You need to know whats happening. Traefik gives you a deep visibility inside of it's logs and metrics.
+
+## How to run the lab on my computer?
+There are multiple ways to run this lab.
+Prerequisites are:
+* Install [Docker Desktop](https://www.docker.com/products/docker-desktop) (If you are on Windows)
+* Install [Docker Desktop for MAC](https://hub.docker.com/editions/community/docker-ce-desktop-mac?utm_source=docker&utm_medium=webreferral&utm_campaign=dd-smartbutton&utm_location=header) (If you are on MAC)
+* Install [Docker-CE](https://docs.docker.com/engine/install/ubuntu/) (If you are on Linux)
+
+When these prerequisites are fulfilled, clone this repository by running
+```
+git clone https://github.com/SimonBecker1997/TraefikCourse.git
+```
+If you do not have git installed, [download](https://github.com/SimonBecker1997/TraefikCourse/archive/refs/heads/main.zip) this repo and extract it on your computer
