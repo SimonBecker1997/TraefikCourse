@@ -42,8 +42,6 @@ services:
 
 
 
-
-
 #Webserver on port 8003 which has a path called /path | Adding a path to URL
   webserver4:
     image: nobody1997/nginx-tutorial:1.0.0
@@ -53,3 +51,14 @@ services:
       - "traefik.http.services.webserver4.loadbalancer.server.port=8003"
       - "traefik.http.routers.webserver4.middlewares=add-path"
       - "traefik.http.middlewares.add-path.addprefix.prefix=/path"
+
+#Webserver on port 8000 | Combining 2 middlewares: Compress & Basic auth
+  webserver5:
+    image: nobody1997/nginx-tutorial:1.0.0
+    labels: 
+      - "traefik.enable=true"
+      - "traefik.http.routers.webserver5.rule=Host(`webserver5.localhost`)"
+      - "traefik.http.services.webserver5.loadbalancer.server.port=8000"
+      - "traefik.http.routers.webserver5.middlewares=webserver5-auth,webserver5-compress"
+      - "traefik.http.middlewares.webserver5-auth.basicauth.users=test:{SHA}W6ph5Mm5Pz8GgiULbPgzG37mj9g="
+      - "traefik.http.middlewares.webserver5-compress.compress=true"
