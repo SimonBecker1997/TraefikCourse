@@ -7,7 +7,8 @@ We will have a look at
 * Metrics
 
 
-### To start the monitoring environment:
+
+## To start the monitoring environment:
 Navigate to the elk directory:
     ```
     cd elk
@@ -20,7 +21,12 @@ Start the Elastic containers by running
 The `-d` option allows you to run it in the background. 
 To stop it after use, simmply navigate again in the elk directory and run `docker-compose down`
 
-After starting the ELK service, launch the traefik instance which ich in this directory
+After starting the ELK service, launch the traefik instance which ich in this directory.
+Navigate back to the `05_Monitoring and Logging` directory
+```
+cd ../
+```
+Then start traefik and the corresponding services:
 ```
 docker-compose up
 ```
