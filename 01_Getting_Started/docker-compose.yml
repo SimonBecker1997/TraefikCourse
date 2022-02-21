@@ -2,7 +2,11 @@ version: '3'
 services:
   reverse-proxy: 
     image: traefik:v2.4
+<<<<<<< HEAD
     #command: --api.insecure=true --providers.docker # Just needed if we do not have a traefik.yml
+=======
+#    command: --api.insecure=true --providers.docker
+>>>>>>> d4bb0862d7706318a8cfcc26d3f61694ae605d4d
     ports:
       - 80:80
       - 8080:8080 #Management UI
