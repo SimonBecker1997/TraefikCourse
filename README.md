@@ -1,7 +1,8 @@
 # Traefik training for absolute beginners
 ## Welcome to this course
 This repository is part of a udemy course called Routing with Traefik: Learn Traefik in less than 5 hours
-You can find the videos here: placeholder
+You can find the videos here: 
+- https://www.udemy.com/course/routing-with-traefik-learn-traefik-in-less-than-2-hours/
 
 I strongly recommend to watch the course BEFORE you play around with the provided files in this repository.
 In the subfolders you will find all the chapters that have been shown in the videos.
