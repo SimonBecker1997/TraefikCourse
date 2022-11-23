@@ -13,12 +13,5 @@ services:
   webserver1:
     image: nobody1997/nginx-tutorial:1.0.0  
     labels: 
-      - "traefik.http.routers.webserver1.rule=Host(`traefiktraining.de`)"
+      - "traefik.http.routers.webserver1.rule=Host(`your-domain-here`)"
       - "traefik.http.services.webserver1.loadbalancer.server.port=8000"
-
-#Webserver on port 8001
-  webserver2:
-    image: nobody1997/nginx-tutorial:1.0.0
-    labels: 
-      - "traefik.http.routers.webserver2.rule=Host(`traefiktraining2.de`)"
-      - "traefik.http.services.webserver2.loadbalancer.server.port=8001"
