@@ -23,7 +23,10 @@ All about changing and tweaking your incoming requests. Add authentication, chan
 All easy explained and fast to do.
 ### [05_Monitoring and Logging](https://github.com/SimonBecker1997/TraefikCourse/tree/main/05_Monitoring%20and%20Logging)
 You need to know whats happening. Traefik gives you a deep visibility inside of it's logs and metrics.
-
+### [06_Cloud Example with real Domain](https://github.com/SimonBecker1997/TraefikCourse/tree/main/06_Example_with_real_domain)
+You would like to get a real world example out of the cloud? Here you go! 
+### [07_Kubernetes](https://github.com/SimonBecker1997/TraefikCourse/tree/main/07_Kubernetes)
+Running some easy examples in Kubernetes. You will find out how.
 ## How to run the lab on my computer?
 There are multiple ways to run this lab.
 Prerequisites are:
